@@ -1,0 +1,8 @@
+Time:                 5000 | we=0 | addr=0 | din=00 | dout=xx
+Time:                15000 | we=1 | addr=1 | din=a5 | dout=xx
+Time:                25000 | we=1 | addr=2 | din=3c | dout=xx
+Time:                35000 | we=1 | addr=3 | din=ff | dout=xx
+Time:                45000 | we=0 | addr=3 | din=ff | dout=xx
+Time:                55000 | we=0 | addr=1 | din=ff | dout=ff
+Time:                65000 | we=0 | addr=2 | din=ff | dout=a5
+Time:                75000 | we=0 | addr=3 | din=ff | dout=3c
