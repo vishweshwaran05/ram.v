@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 1ns/1ps
 
 module ram_tb;
     reg clk;
@@ -17,24 +17,36 @@ module ram_tb;
     );
 
     // Clock generation
-    always #5 clk = ~clk;
+    always #5 clk = ~clk;  // 10ns period
 
     initial begin
         $dumpfile("ram_wave.vcd");
         $dumpvars(0, ram_tb);
 
-        clk = 0; we = 0; addr = 0; din = 0;
+        clk = 0;
+        we  = 0;
+        addr = 0;
+        din  = 0;
 
-        // Write some data
+        // Write some values
         #10 we = 1; addr = 4'h1; din = 8'hA5;
         #10 addr = 4'h2; din = 8'h3C;
         #10 addr = 4'h3; din = 8'hFF;
 
-        // Read back the data
-        #10 we = 0; addr = 4'h1;
+        // Switch to read mode
+        #10 we = 0;
+
+        // Read the same locations
+        #10 addr = 4'h1;
         #10 addr = 4'h2;
         #10 addr = 4'h3;
 
         #10 $finish;
+    end
+
+    // Display every clock
+    always @(posedge clk) begin
+        $display("Time: %t | we=%b | addr=%h | din=%h | dout=%h",
+                 $time, we, addr, din, dout);
     end
 endmodule
